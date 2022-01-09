@@ -3,6 +3,8 @@ import { responseWithPayload } from '../helpers/responseBuilder';
 import * as dataArticle from '../data/article.data';
 
 export async function getArticles(req: Request, res: Response): Promise<void>{
+	console.log(req.params);
+	console.log(req.query);
 	const articles = await dataArticle.findAllArticles();
 	res.status(200).json(responseWithPayload(articles))
 }
