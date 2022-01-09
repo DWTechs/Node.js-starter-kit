@@ -1,36 +1,29 @@
-interface ResponseObject {
-	error: string | null;
+interface ResponseObj {
+	success: boolean;
 	message: string;
 	payload: unknown | null;
-	success: boolean;
+	error: string | null;
 }
 
-const baseObject: ResponseObject = {
-	error: null,
+const responseObj: ResponseObj = {
+	success: false,
 	message: '',
 	payload: null,
-	success: false
+	error: null,
 }
 
-export function responseWithPayload(payload: unknown): ResponseObject {
+export function success(payload: unknown, message: string): ResponseObj {
 	return {
-		...baseObject,
-		payload,
-		success: true
+		...responseObj,
+		success: true,
+		message: message,
+		payload
 	}
 }
 
-export function responseWithError(error: string): ResponseObject {
+export function failure(error: string): ResponseObj {
 	return {
-		...baseObject,
+		...responseObj,
 		error
-	}
-}
-
-export function responseWithMessage(message: string): ResponseObject {
-	return {
-		...baseObject,
-		message,
-		success: true
 	}
 }
